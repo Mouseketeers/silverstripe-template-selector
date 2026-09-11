@@ -1,0 +1,9 @@
+---
+Name: template-selector
+---
+SilverStripe\CMS\Model\SiteTree:
+  extensions:
+    - Mouseketeers\TemplateSelector\TemplateSelector
+SilverStripe\CMS\Controllers\ContentController:
+  extensions:
+    - Mouseketeers\TemplateSelector\TemplateSelectorController

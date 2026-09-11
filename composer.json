@@ -1,0 +1,24 @@
+{
+    "name": "mouseketeers/silverstripe-template-selector",
+    "type": "silverstripe-vendormodule",
+    "keywords": [
+        "silverstripe"
+    ],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Henrik Olsen",
+            "email": "henrik@mouseketeers.dk"
+        }
+    ],
+    "config": {
+        "process-timeout": 600
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Mouseketeers\\TemplateSelector\\": "src/"
+        }
+    }
+}
