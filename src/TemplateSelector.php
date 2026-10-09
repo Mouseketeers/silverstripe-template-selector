@@ -26,7 +26,7 @@ class TemplateSelector extends DataExtension
         // retains the public theme stack, including themes set at runtime.
         $themes = HTMLEditorConfig::getThemes() ?: SSViewer::get_themes();
         $source = $this->getTemplateOptions($themes);
-        $saved = (string) $this->owner->Template;
+        $saved = (string) $this->getOwner()->Template;
         if ($saved !== '' && !isset($source[$saved])) {
             $resolved = $this->getSelectedTemplate($themes);
             if ($resolved !== null) {
@@ -56,7 +56,7 @@ class TemplateSelector extends DataExtension
     {
         $loader = ThemeResourceLoader::inst();
         $themes ??= SSViewer::get_themes();
-        $configured = $this->owner->config()->get('template_selector_templates');
+        $configured = $this->getOwner()->config()->get('template_selector_templates');
         if ($configured) {
             $options = [];
             foreach ($configured as $identifier => $label) {
@@ -67,8 +67,8 @@ class TemplateSelector extends DataExtension
             return $options;
         }
 
-        $class = str_replace('\\', '/', ltrim($this->owner->ClassName, '\\'));
-        $shortName = ClassInfo::shortName($this->owner->ClassName);
+        $class = str_replace('\\', '/', ltrim($this->getOwner()->ClassName, '\\'));
+        $shortName = ClassInfo::shortName($this->getOwner()->ClassName);
         $namespace = !str_contains($class, '/') ? '' : dirname($class) . '/';
         $directories = array_unique([$namespace . 'Layout/', 'Layout/']);
         $options = [];
@@ -92,7 +92,7 @@ class TemplateSelector extends DataExtension
     /** Resolve old basename values only against the available candidates. */
     public function getSelectedTemplate($themes = null)
     {
-        $saved = (string) $this->owner->Template;
+        $saved = (string) $this->getOwner()->Template;
         if ($saved === '') {
             return null;
         }
@@ -111,7 +111,7 @@ class TemplateSelector extends DataExtension
     // Retain the original public method name for backwards compatibility.
     public function getFreindlyTemplateNamesList($themeFileList = null)
     {
-        $shortName = ClassInfo::shortName($this->owner->ClassName);
+        $shortName = ClassInfo::shortName($this->getOwner()->ClassName);
         $labels = [];
         foreach ($themeFileList ?: [] as $item) {
             $name = basename(str_replace('\\', '/', $item));
