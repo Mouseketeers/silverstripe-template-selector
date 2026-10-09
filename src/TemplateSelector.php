@@ -55,7 +55,7 @@ class TemplateSelector extends DataExtension
     public function getTemplateOptions($themes = null)
     {
         $loader = ThemeResourceLoader::inst();
-        $themes = $themes === null ? SSViewer::get_themes() : $themes;
+        $themes ??= SSViewer::get_themes();
         $configured = $this->owner->config()->get('template_selector_templates');
         if ($configured) {
             $options = [];
@@ -69,7 +69,7 @@ class TemplateSelector extends DataExtension
 
         $class = str_replace('\\', '/', ltrim($this->owner->ClassName, '\\'));
         $shortName = ClassInfo::shortName($this->owner->ClassName);
-        $namespace = strpos($class, '/') === false ? '' : dirname($class) . '/';
+        $namespace = !str_contains($class, '/') ? '' : dirname($class) . '/';
         $directories = array_unique([$namespace . 'Layout/', 'Layout/']);
         $options = [];
         foreach ($directories as $directory) {
@@ -115,7 +115,7 @@ class TemplateSelector extends DataExtension
         $labels = [];
         foreach ($themeFileList ?: [] as $item) {
             $name = basename(str_replace('\\', '/', $item));
-            if (strpos($name, $shortName) === 0) {
+            if (str_starts_with($name, $shortName)) {
                 $name = substr($name, strlen($shortName));
             }
             $label = trim(preg_replace('/([a-z0-9])([A-Z])/', '$1 $2', str_replace(['-', '_'], ' ', $name)));
