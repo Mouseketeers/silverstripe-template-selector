@@ -2,16 +2,16 @@
 
 namespace Mouseketeers\TemplateSelector;
 
+use SilverStripe\Core\Extension;
 use SilverStripe\Control\Director;
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorConfig;
-use SilverStripe\ORM\DataExtension;
 use SilverStripe\View\SSViewer;
 use SilverStripe\View\ThemeResourceLoader;
 
-class TemplateSelector extends DataExtension
+class TemplateSelector extends Extension
 {
     private static $db = [
         'Template' => 'Varchar(255)',
