@@ -20,5 +20,9 @@
         "psr-4": {
             "Mouseketeers\\TemplateSelector\\": "src/"
         }
+    },
+    "require": {
+        "php": "^8.1",
+        "silverstripe/framework": "^5"
     }
 }
